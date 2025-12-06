@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import { Provider } from 'react-redux';
+import App from 'src/App';
+import store from 'src/store';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders application heading', () => {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  const heading = screen.getByText(/Social Support Application/i);
+  expect(heading).toBeInTheDocument();
 });
