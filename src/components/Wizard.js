@@ -49,38 +49,22 @@ const Wizard = ({
   };
 
   const summaryPrompt = (fieldKey) => {
-    const introMap =
-      language === "ar"
-        ? {
-            currentSituation: "الوضع المالي الحالي",
-            employmentCircumstances: "ظروف العمل",
-            reasonForApplying: "سبب التقديم",
-          }
-        : {
-            currentSituation: "Current financial situation",
-            employmentCircumstances: "Employment circumstances",
-            reasonForApplying: "Reason for applying",
-          };
+    const introMap = {
+      currentSituation: "Current financial situation",
+      employmentCircumstances: "Employment circumstances",
+      reasonForApplying: "Reason for applying",
+    };
     const currentValues = { ...data, ...watch() };
-    return `${introMap[fieldKey] || introMap.currentSituation}:\n${
-      language === "ar"
-        ? `الاسم: ${currentValues.name || "غير مذكور"}\nالعمل: ${
-            currentValues.employmentStatus || "غير مذكور"
-          }\nالدخل: ${
-            currentValues.monthlyIncome
-              ? `${currentValues.monthlyIncome} درهم`
-              : "غير مذكور"
-          }\nالمعالون: ${currentValues.dependents || "غير مذكور"}\nالسياق:\n`
-        : `Name: ${currentValues.name || "Not provided"}\nEmployment: ${
-            currentValues.employmentStatus || "Not provided"
-          }\nIncome: ${
-            currentValues.monthlyIncome
-              ? `${currentValues.monthlyIncome} AED`
-              : "Not provided"
-          }\nDependents: ${
-            currentValues.dependents || "Not provided"
-          }\nContext:\n`
-    }`;
+    return `${introMap[fieldKey] || introMap.currentSituation}:\n${`Name: ${
+      currentValues.name || "Not provided"
+    }\nEmployment: ${
+      currentValues.employmentStatus || "Not provided"
+    }\nIncome: ${
+      currentValues.monthlyIncome
+        ? `${currentValues.monthlyIncome} AED`
+        : "Not provided"
+    }\nDependents: ${currentValues.dependents || "Not provided"}\nContext:\n\n
+    Write in ${language === "ar" ? "Arabic" : "English"}`}`;
   };
 
   const requestSuggestion = async (fieldKey) => {
