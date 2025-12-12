@@ -4,12 +4,9 @@ import AIModal from "src/components/AIModal";
 import Header from "src/components/Header";
 import Wizard from "src/components/Wizard";
 import useApplicationForm from "src/hooks/useApplicationForm";
-import useFormDataStore from "src/hooks/useFormDataStore";
-import { defaultValues } from "src/constants/defaultValues";
 
 function App() {
   const { dir } = useLocalisation();
-  const { data, setData } = useFormDataStore();
   const {
     register,
     watch,
@@ -17,7 +14,7 @@ function App() {
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
-  } = useApplicationForm(data || defaultValues, setData);
+  } = useApplicationForm();
 
   useEffect(() => {
     document.documentElement.dir = dir;

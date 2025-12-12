@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useFormDataStore from "src/hooks/useFormDataStore";
+import { defaultValues as initialValues } from "src/constants/defaultValues";
 
-const useApplicationForm = (defaultValues, onChange) => {
+const useApplicationForm = () => {
+  const { data, setData: onChange } = useFormDataStore();
+  const defaultValues = data || initialValues;
   const methods = useForm({
     mode: "onBlur",
     defaultValues,
