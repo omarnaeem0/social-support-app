@@ -63,8 +63,11 @@ const Wizard = ({
       currentValues.monthlyIncome
         ? `${currentValues.monthlyIncome} AED`
         : "Not provided"
-    }\nDependents: ${currentValues.dependents || "Not provided"}\nContext:\n\n
-    Write in ${language === "ar" ? "Arabic" : "English"}`}`;
+    }\nDependents: ${
+      currentValues.dependents || "Not provided"
+    }\nContext:\nLanguage Selected: ${
+      language === "ar" ? "Arabic" : "English"
+    }`}`;
   };
 
   const requestSuggestion = async (fieldKey) => {
